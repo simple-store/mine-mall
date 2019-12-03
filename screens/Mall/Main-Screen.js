@@ -10,9 +10,9 @@ import {
   View,
 } from 'react-native';
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../../components/StyledText';
 
-export default function HomeScreen() {
+export default function MallScreen() {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -22,8 +22,8 @@ export default function HomeScreen() {
           <Image
             source={
               __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
+                ? require('../../assets/images/robot-dev.png')
+                : require('../../assets/images/robot-prod.png')
             }
             style={styles.welcomeImage}
           />
@@ -69,7 +69,7 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
+MallScreen.navigationOptions = {
   header: null,
 };
 

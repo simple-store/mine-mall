@@ -3,24 +3,25 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import MineScreen from '../screens/Mine/Main-Screen';
+import MallScreen from '../screens/Mall/Main-Screen';
+import TasksScreen from '../screens/Task/Main-Screen';
+import TranscationScreen from '../screens/Transaction/Main-Screen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+const MallStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Mall: MallScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+MallStack.navigationOptions = {
+  tabBarLabel: '商城',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -33,44 +34,61 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = '';
+MallStack.path = '';
 
-const LinksStack = createStackNavigator(
+const TasksStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Tasks: TasksScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-};
-
-LinksStack.path = '';
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen,
-  },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+TasksStack.navigationOptions = {
+  tabBarLabel: '任务',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   ),
 };
 
-SettingsStack.path = '';
+TasksStack.path = '';
+
+const TranscationStack = createStackNavigator(
+  {
+    transactions: TranscationScreen,
+  },
+  config
+);
+
+TranscationStack.navigationOptions = {
+  tabBarLabel: '交易',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+TranscationStack.path = '';
+
+const MineStack = createStackNavigator(
+  {
+    Mine: MineScreen,
+  },
+  config
+);
+
+MineStack.navigationOptions = {
+  tabBarLabel: '我的',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+MineStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  MallStack,
+  TasksStack,
+  TranscationStack,
+  MineStack,
 });
 
 tabNavigator.path = '';
